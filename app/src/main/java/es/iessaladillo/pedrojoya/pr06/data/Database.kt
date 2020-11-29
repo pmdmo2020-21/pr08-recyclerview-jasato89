@@ -1,12 +1,43 @@
 package es.iessaladillo.pedrojoya.pr06.data
 
-// TODO:
-//  Crear una singleton Database que implemente la interfaz DataSource.
-//  Al insertar un usuario, se le asignará un id autonumérico
-//  (primer valor válido será el 1) que deberá ser gestionado por la Database.
-//  La base de datos debe ser reactiva, de manera que cuando se agrege,
-//  actualice o borre un usuario, los observadores de la lista deberán
-//  recibir la nueva lista.
-//  Al consultar los usuario se deberá retornar un LiveData con la lista
-//  de usuarios ordenada por nombre
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import es.iessaladillo.pedrojoya.pr06.data.model.User
+
+object DataBase : DataSource {
+
+    private val users : MutableList<User> = emptyList<User>().toMutableList()
+    private val usersLiveData : MutableLiveData<List<User>> = MutableLiveData(users)
+
+    override fun getAllUsersOrderedByName(): LiveData<List<User>> = usersLiveData
+
+    override fun insertUser(user: User) {
+        users.add(user)
+        updateStudentsLiveData()
+    }
+
+    override fun updateUser(user: User) {
+
+        var position : Int = users.indexOfFirst { it.id == user.id }
+        if (position<= 0) {
+            users[position] = user
+        }
+
+        updateStudentsLiveData()
+    }
+
+    override fun deleteUser(user: User) {
+        var position : Int = users.indexOfFirst { it.id == user.id }
+        if (position<= 0) {
+            users.removeAt(position)
+            updateStudentsLiveData()
+        }
+
+    }
+
+    private fun updateStudentsLiveData() {usersLiveData.value = users.sortedBy { it.name }}
+
+}
+
+
 
