@@ -22,13 +22,13 @@
              La anchura y altura del ImageView viene dado por
              @dimen/users_item_imgPhoto_width
         -->
+
         <TextView
             android:id="@+id/txtUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Test"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Test Subtitle"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtUserName" />
@@ -50,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="667567385"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
@@ -65,8 +63,7 @@
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/txtUserName"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/btnDelete"
@@ -76,7 +73,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="#F44336"
-            android:text="Delete"
+            android:text="@string/users_item_btnDelete"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:backgroundTint="#F44336"
-            android:text="Edit"
+            android:text="@string/users_item_btnEdit"
             android:textColor="#FFFFFF"
             app:iconTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"

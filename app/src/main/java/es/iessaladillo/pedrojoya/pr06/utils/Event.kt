@@ -20,7 +20,7 @@ open class Event<out T>(private val content: T) {
 
 }
 
-inline fun <T> LiveData<Event<T>>.observeEvent(
+inline fun <T> LiveData<Event<T>>.observeEvents(
         owner: LifecycleOwner, crossinline onEventUnhandledContent: (T) -> Unit) {
     observe(owner) { it.getContentIfNotHandled()?.let(onEventUnhandledContent) }
 }

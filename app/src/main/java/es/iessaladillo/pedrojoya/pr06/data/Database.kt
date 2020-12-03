@@ -6,36 +6,41 @@ import es.iessaladillo.pedrojoya.pr06.data.model.User
 
 object DataBase : DataSource {
 
-    private val users : MutableList<User> = emptyList<User>().toMutableList()
-    private val usersLiveData : MutableLiveData<List<User>> = MutableLiveData(users)
+    private val users : MutableList<User> = mutableListOf()
+    private val usersLiveData : MutableLiveData<List<User>> = MutableLiveData()
+
+    init {
+        updateUsersLiveData()
+    }
 
     override fun getAllUsersOrderedByName(): LiveData<List<User>> = usersLiveData
 
     override fun insertUser(user: User) {
         users.add(user)
-        updateStudentsLiveData()
+        updateUsersLiveData()
     }
 
     override fun updateUser(user: User) {
 
         var position : Int = users.indexOfFirst { it.id == user.id }
-        if (position<= 0) {
+        if (position>= 0) {
             users[position] = user
+            updateUsersLiveData()
         }
 
-        updateStudentsLiveData()
+
     }
 
     override fun deleteUser(user: User) {
         var position : Int = users.indexOfFirst { it.id == user.id }
-        if (position<= 0) {
+        if (position>= 0) {
             users.removeAt(position)
-            updateStudentsLiveData()
+            updateUsersLiveData()
         }
 
     }
 
-    private fun updateStudentsLiveData() {usersLiveData.value = users.sortedBy { it.name }}
+    private fun updateUsersLiveData() {usersLiveData.value = users.sortedBy { it.name }}
 
 }
 

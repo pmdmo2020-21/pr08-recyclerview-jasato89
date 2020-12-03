@@ -1,6 +1,6 @@
 package es.iessaladillo.pedrojoya.pr06.data.model
 
-import android.provider.ContactsContract
+import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 // TODO:
@@ -8,5 +8,6 @@ import kotlinx.android.parcel.Parcelize
 //  contenga el id de tipo Long, nombre, email, phoneNumber, address, web y photoUrl
 //  todas ellas de tipo String.
 
-data class User(val id : Long, val name: String, val email: String, val phone: String, val address: String?, val web : String?)
+@Parcelize
+data class User(var id : Long, var name: String, var email: String, var phone: String, var address: String, var web : String, var photo: String) : Parcelable
 
